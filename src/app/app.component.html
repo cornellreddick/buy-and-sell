@@ -27,4 +27,4 @@
 <h3>ng-content</h3> -->
 
 <button (click)="fadeInOut()">Fade in / out</button>
-<div @fadeIn *ngIf="isShown">This is a block with fade in / out</div>
+<div @fadeIn @fadeOut *ngIf="isShown">This is a block with fade in / out</div>

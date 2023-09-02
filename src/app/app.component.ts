@@ -11,13 +11,20 @@ const enterTransitions = transition(':enter', [
   }),
   animate('1s ease-in', style({opacity: 1})),
 ]);
+const exitTransitions = transition(':leave', [
+  style({
+    opacity: 1
+  }),
+  animate('1s ease-out', style({opacity: 0})),
+]);
 const fadeIn = trigger('fadeIn', [enterTransitions])
+const fadeOut = trigger('fadeOut', [exitTransitions])
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  animations: [fadeIn]
+  animations: [fadeIn, fadeOut]
 })
 export class AppComponent {
   title = 'buy-and-sell';
