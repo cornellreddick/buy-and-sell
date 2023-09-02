@@ -1,9 +1,16 @@
 import { Component, Input } from '@angular/core';
 import { UserInterface } from './user/user/user.component';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, combineLatest, of } from 'rxjs';
 import { Article } from './article';
 import {animate, state, style, transition, trigger } from '@angular/animations';
+
+export interface User{
+  name: string;
+  surName: string;
+  age: string;
+}
+
 const fadeInOut = trigger('fadeInOut', [
   state('open', style({opacity:1})),
   state('close', style({opacity:0})),
@@ -39,6 +46,18 @@ export class AppComponent {
   article: Article | null = { id: '1', title: 'Big Boss'};
   numbers = [1, 2, 3, 4, 5, 6 ];
   isShown = false;
+
+  currentUsers: User[] = [{name: 'Cornell', surName: 'ahnovel', age: '44'}];
+
+  fun$ = of('fun');
+  boring$ = of('boring');
+  cool$ = of('cool');
+
+  data$ = combineLatest({
+    fun: this.fun$,
+    boring: this.boring$,
+    cool: this.cool$
+  });
 
   constructor(private http: HttpClient) { }
 
