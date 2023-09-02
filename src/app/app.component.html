@@ -1,1 +1,30 @@
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet>
+<app-todos></app-todos>
+<app-user></app-user> -->
+
+
+<!-- <h3>ng-template</h3>
+<div *ngIf="article; else loading">{{ article.title }}</div>
+
+<ng-template #loading>
+    <div>Loading</div>
+</ng-template>
+
+<h3>ng-container</h3>
+
+<ng-container *ngIf="numbers">
+    <ng-container *ngFor="let number of numbers">
+        {{ number }}
+    </ng-container>
+</ng-container>
+
+<h3>ng-content</h3>
+
+<app-child1>
+    <div>Hello World</div>
+</app-child1>
+
+<h3>ng-content</h3> -->
+
+<button (click)="fadeInOut()">Fade in / out</button>
+<div @fadeIn *ngIf="isShown">This is a block with fade in / out</div>

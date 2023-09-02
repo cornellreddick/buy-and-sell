@@ -9,6 +9,12 @@ import { ContactPageComponent } from './contact-page/contact-page.component';
 import { MyListingsPageComponent } from './my-listings-page/my-listings-page.component';
 import { NewListingPageComponent } from './new-listing-page/new-listing-page.component';
 import { EditListingPageComponent } from './edit-listing-page/edit-listing-page.component';
+import { TodoComponent } from './todo-page/todo/todo.component';
+import { TodosComponent } from './todos-page/todos/todos.component';
+import { UserComponent } from './user/user/user.component';
+import { HttpClientModule } from '@angular/common/http';
+import { Child1Component } from './child1/child1/child1.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -18,11 +24,17 @@ import { EditListingPageComponent } from './edit-listing-page/edit-listing-page.
     ContactPageComponent,
     MyListingsPageComponent,
     NewListingPageComponent,
-    EditListingPageComponent
+    EditListingPageComponent,
+    TodoComponent,
+    TodosComponent,
+    UserComponent,
+    Child1Component
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

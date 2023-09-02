@@ -1,0 +1,14 @@
+<div class="content-box">
+    {{ todoProps.text}}
+</div>
+
+{{ checkRender() }}
+
+<div>{{someLocalProp}}</div>
+
+<button (click)="changeSomeLocalProp()">Change some local prop</button>
+
+<div>
+    Filter: {{ filter$ | async}}
+    <button (click)="changeFilter()">Change Filter</button>
+</div>
