@@ -3,28 +3,34 @@ import { UserInterface } from './user/user/user.component';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { Article } from './article';
-import {animate, style, transition, trigger } from '@angular/animations';
+import {animate, state, style, transition, trigger } from '@angular/animations';
+const fadeInOut = trigger('fadeInOut', [
+  state('open', style({opacity:1})),
+  state('close', style({opacity:0})),
+  transition('open => close', [animate('1s ease-out')]),
+  transition('close => open', [animate('1s ease-in')]),
+]);
 
-const enterTransitions = transition(':enter', [
-  style({
-    opacity: 0
-  }),
-  animate('1s ease-in', style({opacity: 1})),
-]);
-const exitTransitions = transition(':leave', [
-  style({
-    opacity: 1
-  }),
-  animate('1s ease-out', style({opacity: 0})),
-]);
-const fadeIn = trigger('fadeIn', [enterTransitions])
-const fadeOut = trigger('fadeOut', [exitTransitions])
+// const enterTransitions = transition(':enter', [
+//   style({
+//     opacity: 0
+//   }),
+//   animate('1s ease-in', style({opacity: 1})),
+// ]);
+// const exitTransitions = transition(':leave', [
+//   style({
+//     opacity: 1
+//   }),
+//   animate('1s ease-out', style({opacity: 0})),
+// ]);
+// const fadeIn = trigger('fadeIn', [enterTransitions])
+// const fadeOut = trigger('fadeOut', [exitTransitions])
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  animations: [fadeIn, fadeOut]
+  animations: [fadeInOut]
 })
 export class AppComponent {
   title = 'buy-and-sell';
