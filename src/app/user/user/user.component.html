@@ -1,2 +1,6 @@
 <p>Usesrs</p>
-{{ users$ | async }}
+<div class="content-box" *ngFor="let user of users">
+    <a routerLink="/users/">
+        {{user.name }} - {{user.age}}
+    </a>
+</div>

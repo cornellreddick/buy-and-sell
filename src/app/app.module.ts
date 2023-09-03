@@ -18,6 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BackgroundChangeDirective } from './background-change.directive';
 import { FullNamePipe } from './full-name.pipe';
 import { InterceptorService } from './interceptor.service';
+import { AuthGaurdService } from './auth-gaurd.service';
+import { UsersModule } from './users/users.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,6 @@ import { InterceptorService } from './interceptor.service';
     EditListingPageComponent,
     TodoComponent,
     TodosComponent,
-    UserComponent,
     Child1Component,
     BackgroundChangeDirective,
     FullNamePipe
@@ -39,14 +40,15 @@ import { InterceptorService } from './interceptor.service';
     BrowserModule,
     AppRoutingModule, 
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    UsersModule
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
       multi: true,
-    }
+    }, AuthGaurdService
   ],
   bootstrap: [AppComponent]
 })
