@@ -78,6 +78,7 @@ export class AppComponent {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.http.get('http://localhost:3000/users').subscribe();
     this.isLoading$.next(true);
     this.http.get<UserInterface[]>('http://localhost:4200').subscribe(
      (users) => {
