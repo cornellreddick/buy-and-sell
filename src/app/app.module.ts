@@ -15,6 +15,7 @@ import { UserComponent } from './user/user/user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { Child1Component } from './child1/child1/child1.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BackgroundChangeDirective } from './background-change.directive';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TodoComponent,
     TodosComponent,
     UserComponent,
-    Child1Component
+    Child1Component,
+    BackgroundChangeDirective
   ],
   imports: [
     BrowserModule,
