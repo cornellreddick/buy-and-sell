@@ -16,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { Child1Component } from './child1/child1/child1.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BackgroundChangeDirective } from './background-change.directive';
+import { FullNamePipe } from './full-name.pipe';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { BackgroundChangeDirective } from './background-change.directive';
     TodosComponent,
     UserComponent,
     Child1Component,
-    BackgroundChangeDirective
+    BackgroundChangeDirective,
+    FullNamePipe
   ],
   imports: [
     BrowserModule,

@@ -33,6 +33,13 @@ const fadeInOut = trigger('fadeInOut', [
 // const fadeIn = trigger('fadeIn', [enterTransitions])
 // const fadeOut = trigger('fadeOut', [exitTransitions])
 
+export interface Person{
+  id: string;
+  firstName: string;
+  lastName: string;
+  age: string;
+}
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -46,6 +53,15 @@ export class AppComponent {
   article: Article | null = { id: '1', title: 'Big Boss'};
   numbers = [1, 2, 3, 4, 5, 6 ];
   isShown = false;
+  hello = 'hello';
+  currentDate = new Date();
+
+  person = {
+    id: '1',
+    firstName: 'Mike',
+    lastName: 'Jones',
+    age: '35'
+  };
 
   currentUsers: User[] = [{name: 'Cornell', surName: 'ahnovel', age: '44'}];
 
