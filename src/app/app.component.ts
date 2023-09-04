@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, combineLatest, of } from 'rxjs';
 import { Article } from './article';
 import {animate, state, style, transition, trigger } from '@angular/animations';
+import { CarService } from './carservice';
 
 export interface User{
   name: string;
@@ -75,7 +76,9 @@ export class AppComponent {
     cool: this.cool$
   });
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private carService: CarService) { 
+    console.log('config', carService.carConfig);
+  }
 
   ngOnInit(): void {
     this.http.get('http://localhost:3000/users').subscribe();

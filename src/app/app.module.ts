@@ -20,6 +20,7 @@ import { FullNamePipe } from './full-name.pipe';
 import { InterceptorService } from './interceptor.service';
 import { AuthGaurdService } from './auth-gaurd.service';
 import { UsersModule } from './users/users.module';
+import { CarsModule } from './cars/cars.module';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { UsersModule } from './users/users.module';
     AppRoutingModule, 
     HttpClientModule,
     BrowserAnimationsModule,
-    UsersModule
+    UsersModule,
+    CarsModule.forRoot({apiUrl: 'http://localhost:3000'} ),
   ],
   providers: [
     {
