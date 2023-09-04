@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthGaurdService } from '../auth-gaurd.service';
 
 const routes: Routes = [
-  {path: 'users', component: UserComponent, canActivate: [AuthGaurdService]}
+  {path: 'users', loadChildren: ()=> import('./users.module').then((m) => m.UsersModule)},
 ]
 
 @NgModule({

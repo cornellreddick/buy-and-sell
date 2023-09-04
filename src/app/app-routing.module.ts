@@ -9,6 +9,7 @@ import { NewListingPageComponent } from './new-listing-page/new-listing-page.com
 import { UserComponent } from './user/user/user.component';
 
 const routes: Routes = [
+ 
   { path: 'listings', component: ListingsPageComponent, pathMatch: 'full' },
   { path: 'listings/:id', component: ListingsDetailPageComponent },
   { path: 'contact/:id', component: ContactPageComponent },
