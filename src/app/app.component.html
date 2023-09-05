@@ -57,5 +57,10 @@
 <router-outlet></router-outlet>
 <app-user></app-user>
 
+<!-- What is ngZone? -->
+<div (mousedown)="mousedown($event)" (mouseup)="mouseUp($event)" #element>Element</div>
+
+{{position | json}}
+
 
 

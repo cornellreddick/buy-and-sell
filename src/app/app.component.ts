@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, NgZone, Input } from '@angular/core';
 import { UserInterface } from './user/user/user.component';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, combineLatest, of } from 'rxjs';
@@ -47,7 +47,9 @@ export interface Person{
   styleUrls: ['./app.component.css'],
   animations: [fadeInOut]
 })
+
 export class AppComponent {
+  @ViewChild('element', {static: true}) element: any;
   title = 'buy-and-sell';
   users$ = new BehaviorSubject<UserInterface[]>([])
   isLoading$ = new BehaviorSubject<boolean>(false);
@@ -56,6 +58,7 @@ export class AppComponent {
   isShown = false;
   hello = 'hello';
   currentDate = new Date();
+  position: any;
 
   person = {
     id: '1',
@@ -76,8 +79,29 @@ export class AppComponent {
     cool: this.cool$
   });
 
-  constructor(private http: HttpClient, private carService: CarService) { 
+  constructor(private http: HttpClient, private carService: CarService, private zone: NgZone) { 
     console.log('config', carService.carConfig);
+
+    mouseDown(event: any){
+      this.element = event?.target;
+      this.zone.runOutsideAngular(()=> {
+        window.document.addEventListener('mousemove', this.mouseMove.bind(this));
+      })
+    }
+    mouseMove(event: any){
+      event?.preventDefault();
+      this.element.setAttribute('x', event.clientX);
+      this.element.setAttribute('y', event.clientY);
+    }
+    mouseUp(event: any){
+      this.zone.run(()=>{
+        this.position = {
+          x: this.element.getAttribute('x'),
+          y: this.element.getAttribute('y'),
+        };
+      });
+      window.document.removeEventListener('mousemove', this.mouseMove);
+    }
   }
 
   ngOnInit(): void {
@@ -95,3 +119,7 @@ export class AppComponent {
     this.isShown = !this.isShown;
   }
 }
+function ViewChild(arg0: string, arg1: { static: boolean; }): (target: AppComponent, propertyKey: "element") => void {
+  throw new Error('Function not implemented.');
+}
+
