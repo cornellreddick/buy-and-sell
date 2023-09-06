@@ -21,6 +21,7 @@ import { InterceptorService } from './interceptor.service';
 import { AuthGaurdService } from './auth-gaurd.service';
 import { UsersModule } from './users/users.module';
 import { CarsModule } from './cars/cars.module';
+import { ClickDirective } from './click.directive';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CarsModule } from './cars/cars.module';
     TodosComponent,
     Child1Component,
     BackgroundChangeDirective,
-    FullNamePipe
+    FullNamePipe,
+    ClickDirective
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,7 @@ import { CarsModule } from './cars/cars.module';
     HttpClientModule,
     BrowserAnimationsModule,
     UsersModule,
-    CarsModule.forRoot({apiUrl: 'http://localhost:3000'} ),
+    CarsModule.forRoot({apiUrl: 'http://localhost:3000'} )
   ],
   providers: [
     {
