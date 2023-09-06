@@ -5,6 +5,8 @@ import { BehaviorSubject, combineLatest, of } from 'rxjs';
 import { Article } from './article';
 import {animate, state, style, transition, trigger } from '@angular/animations';
 import { CarService } from './carservice';
+import { FormBuilder, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 export interface User{
   name: string;
@@ -80,8 +82,26 @@ export class AppComponent {
     cool: this.cool$
   });
 
-  constructor(private http: HttpClient, private carService: CarService, private zone: NgZone) { 
+  constructor(private http: HttpClient, private carService: CarService, private zone: NgZone, private formBuilder: FormBuilder, private toastr: ToastrService) { 
     console.log('config', carService.carConfig);
+  }
+
+  registerForm = this.formBuilder.group({
+    username: ['', Validators.required],
+    password: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]]
+  })
+
+  onSubmit(): void{
+    if(this.registerForm.valid 
+      && this.registerForm.value.password !== ""
+      && this.registerForm.value.username !== "" 
+      && this.registerForm.value.email !== ""  ){
+      console.log('onSubmit', this.registerForm.value);
+      this.toastr.success('Form successfully submitted');
+    }else{
+      this.toastr.error('Please fill in every field.');
+    }
   }
 
   ngOnInit(): void {

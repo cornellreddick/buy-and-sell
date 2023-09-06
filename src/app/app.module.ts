@@ -22,6 +22,8 @@ import { AuthGaurdService } from './auth-gaurd.service';
 import { UsersModule } from './users/users.module';
 import { CarsModule } from './cars/cars.module';
 import { ClickDirective } from './click.directive';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { ClickDirective } from './click.directive';
     HttpClientModule,
     BrowserAnimationsModule,
     UsersModule,
-    CarsModule.forRoot({apiUrl: 'http://localhost:3000'} )
+    CarsModule.forRoot({apiUrl: 'http://localhost:3000'} ),
+    ReactiveFormsModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     {

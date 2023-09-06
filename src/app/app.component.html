@@ -62,4 +62,27 @@
 
 {{position | json}}
 
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="username">User Name: </label>
+        <input type="text" formControlName="username"/>
+        <span *ngIf="registerForm.get('username')?.invalid">This field is required</span>
+    </div>
+    <div>
+        <label for="password">Password: </label>
+        <input type="password" formControlName="password"/>
+        <span *ngIf="registerForm.get('password')?.invalid">This field is required</span>
+    </div>
+    <div>
+        <label for="email">Email: </label>
+        <input type="text" formControlName="email"/>
+        <span *ngIf="registerForm.get('email')?.invalid">This field is required</span>
+    </div>
+    <div>
+        <button type="submit">
+            Register
+        </button>
+    </div>
+</form>
+
 

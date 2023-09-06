@@ -1,3 +1,4 @@
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -16,11 +17,12 @@ button {
     font-size: 16px;
 }
 
-input, textarea {
+input,
+textarea {
     border: 2px solid black;
     border-radius: 8px;
     font-family: Arial, sans-serif;
-    font-size: 16px; 
+    font-size: 16px;
     padding: 8px;
 }
 
@@ -82,6 +84,6 @@ div {
     padding: 16px;
 }
 
-.buttons-container > button {
+.buttons-container>button {
     margin-left: 8px;
 }
