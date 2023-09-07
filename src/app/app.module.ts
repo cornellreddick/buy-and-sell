@@ -24,6 +24,10 @@ import { CarsModule } from './cars/cars.module';
 import { ClickDirective } from './click.directive';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtools, StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { PersonModule } from './person/person/person.module';
+import { PersonComponent } from './person/person/person.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,7 @@ import { ToastrModule } from 'ngx-toastr';
     BackgroundChangeDirective,
     FullNamePipe,
     ClickDirective
+    
   ],
   imports: [
     BrowserModule,
@@ -50,6 +55,12 @@ import { ToastrModule } from 'ngx-toastr';
     CarsModule.forRoot({apiUrl: 'http://localhost:3000'} ),
     ReactiveFormsModule,
     ToastrModule.forRoot(),
+    StoreModule.forRoot({}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: false,
+      autoPause: true,
+    })
   ],
   providers: [
     {

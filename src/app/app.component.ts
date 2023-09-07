@@ -114,9 +114,9 @@ export class AppComponent {
       console.log('valueChanges', value);
     })
 
-    this.http.get('http://localhost:3000/users').subscribe();
+    this.http.get('http://localhost:3004/users').subscribe();
     this.isLoading$.next(true);
-    this.http.get<UserInterface[]>('http://localhost:4200').subscribe(
+    this.http.get<UserInterface[]>('http://localhost:3004/users').subscribe(
      (users) => {
       this.users$.next(users);
       this.isLoading$.next(false);
