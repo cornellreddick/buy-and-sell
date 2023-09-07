@@ -63,6 +63,7 @@ export class AppComponent {
   currentDate = new Date();
   position: any;
   isSubmitted = false;
+  currentPage = 1;
 
   person = {
     id: '1',
