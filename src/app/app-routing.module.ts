@@ -7,9 +7,11 @@ import { EditListingPageComponent } from './edit-listing-page/edit-listing-page.
 import { MyListingsPageComponent } from './my-listings-page/my-listings-page.component';
 import { NewListingPageComponent } from './new-listing-page/new-listing-page.component';
 import { UserComponent } from './user/user/user.component';
+import { PersonComponent } from './person/person/person.component';
 
 const routes: Routes = [
- 
+  
+  {path: 'person', component: PersonComponent},
   { path: 'listings', component: ListingsPageComponent, pathMatch: 'full' },
   { path: 'listings/:id', component: ListingsDetailPageComponent },
   { path: 'contact/:id', component: ContactPageComponent },

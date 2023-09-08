@@ -62,6 +62,8 @@ export class AppComponent {
   hello = 'hello';
   currentDate = new Date();
   position: any;
+  isSubmitted = false;
+  currentPage = 1;
 
   person = {
     id: '1',
@@ -106,17 +108,24 @@ export class AppComponent {
       && this.registerForm.value.password !== ""
       && this.registerForm.value.username !== "" 
       && this.registerForm.value.email !== ""  ){
+        this.isSubmitted = true;
       console.log('onSubmit', this.registerForm.value);
       this.toastr.success('Form successfully submitted');
     }else{
+      this.isSubmitted = true;
       this.toastr.error('Please fill in every field.');
     }
   }
 
   ngOnInit(): void {
-    this.http.get('http://localhost:3000/users').subscribe();
+
+    this.registerForm.get('username')?.valueChanges.subscribe(value =>{
+      console.log('valueChanges', value);
+    })
+
+    this.http.get('http://localhost:3004/users').subscribe();
     this.isLoading$.next(true);
-    this.http.get<UserInterface[]>('http://localhost:4200').subscribe(
+    this.http.get<UserInterface[]>('http://localhost:3004/users').subscribe(
      (users) => {
       this.users$.next(users);
       this.isLoading$.next(false);
