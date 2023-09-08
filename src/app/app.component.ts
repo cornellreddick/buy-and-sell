@@ -1,7 +1,7 @@
 import { Component, NgZone, Input, ViewChild } from '@angular/core';
 import { UserInterface } from './user/user/user.component';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, combineLatest, of } from 'rxjs';
+import { BehaviorSubject, combineLatest, interval, of } from 'rxjs';
 import { Article } from './article';
 import {animate, state, style, transition, trigger } from '@angular/animations';
 import { CarService } from './carservice';
@@ -84,6 +84,15 @@ export class AppComponent {
 
   constructor(private http: HttpClient, private carService: CarService, private zone: NgZone, private formBuilder: FormBuilder, private toastr: ToastrService) { 
     console.log('config', carService.carConfig);
+
+    const hello$ = interval(1000);
+    const world$ = of('world');
+    const really$ = of('really');
+
+    combineLatest([hello$, world$, really$]).subscribe(res => {
+      console.log(res);
+    })
+
   }
 
   registerForm = this.formBuilder.group({
