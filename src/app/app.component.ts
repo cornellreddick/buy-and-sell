@@ -1,7 +1,7 @@
 import { Component, NgZone, Input, ViewChild } from '@angular/core';
 import { UserInterface } from './user/user/user.component';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, combineLatest, interval, of } from 'rxjs';
+import { BehaviorSubject, Subject, combineLatest, of } from 'rxjs';
 import { Article } from './article';
 import {animate, state, style, transition, trigger } from '@angular/animations';
 import { CarService } from './carservice';
@@ -62,8 +62,6 @@ export class AppComponent {
   hello = 'hello';
   currentDate = new Date();
   position: any;
-  isSubmitted = false;
-  currentPage = 1;
 
   person = {
     id: '1',
@@ -87,14 +85,16 @@ export class AppComponent {
   constructor(private http: HttpClient, private carService: CarService, private zone: NgZone, private formBuilder: FormBuilder, private toastr: ToastrService) { 
     console.log('config', carService.carConfig);
 
-    const hello$ = interval(1000);
-    const world$ = of('world');
-    const really$ = of('really');
+    const person$ = new BehaviorSubject<Person[]>([]);
+    const subject$ = new Subject()
+    subject$.subscribe(res => console.log('subject', res));
 
-    combineLatest([hello$, world$, really$]).subscribe(res => {
-      console.log(res);
-    })
+    setTimeout(() => {
+      this.users$.next([{id: '1', name: 'Mike', age: '34'}])
+      subject$.next(1)
+    }, 2000)
 
+    this.users$.subscribe(res => console.log('res', res, this.users$.getValue()));
   }
 
   registerForm = this.formBuilder.group({
@@ -108,24 +108,17 @@ export class AppComponent {
       && this.registerForm.value.password !== ""
       && this.registerForm.value.username !== "" 
       && this.registerForm.value.email !== ""  ){
-        this.isSubmitted = true;
       console.log('onSubmit', this.registerForm.value);
       this.toastr.success('Form successfully submitted');
     }else{
-      this.isSubmitted = true;
       this.toastr.error('Please fill in every field.');
     }
   }
 
   ngOnInit(): void {
-
-    this.registerForm.get('username')?.valueChanges.subscribe(value =>{
-      console.log('valueChanges', value);
-    })
-
-    this.http.get('http://localhost:3004/users').subscribe();
+    this.http.get('http://localhost:3000/users').subscribe();
     this.isLoading$.next(true);
-    this.http.get<UserInterface[]>('http://localhost:3004/users').subscribe(
+    this.http.get<UserInterface[]>('http://localhost:4200').subscribe(
      (users) => {
       this.users$.next(users);
       this.isLoading$.next(false);

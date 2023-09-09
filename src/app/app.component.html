@@ -1,6 +1,6 @@
-<!-- <router-outlet></router-outlet> -->
-<!-- <app-todos></app-todos>
-<app-user></app-user>  -->
+<!-- <router-outlet></router-outlet>
+<app-todos></app-todos>
+<app-user></app-user> -->
 
 
 <!-- <h3>ng-template</h3>
@@ -46,16 +46,14 @@
 
 <!-- What are pipes? What build in pipes do you know? Create a simple pipe -->
 <!-- Change to Upper Cases -->
-<div>{{ hello | uppercase}}</div>
+<div>{{ hello }}</div>
 <!-- Dates -->
-<div>{{ currentDate | date | uppercase }}</div>
+<div>{{ currentDate }}</div>
 
-<div> {{ person | fullName }}</div>
+<div> {{ person }}</div>
 
 <!-- What is Angular Ivy? -->
 
-<router-outlet></router-outlet>
-<app-user></app-user>
 
 <!-- What is ngZone? -->
 <div (mousedown)="mouseDown($event)" (mouseup)="mouseUp($event)" #element>Element</div>
@@ -66,23 +64,17 @@
     <div>
         <label for="username">User Name: </label>
         <input type="text" formControlName="username"/>
-        <span *ngIf="registerForm.get('username')?.hasError('required') 
-        && (registerForm.get('username')?.dirty 
-        || registerForm.get('username')?.touched)">This field is required</span>
+        <span *ngIf="registerForm.get('username')?.invalid">This field is required</span>
     </div>
     <div>
         <label for="password">Password: </label>
         <input type="password" formControlName="password"/>
-        <span *ngIf="registerForm.get('password')?.hasError('required') 
-        && (registerForm.get('password')?.dirty 
-        || registerForm.get('password')?.touched)">This field is required</span>
+        <span *ngIf="registerForm.get('password')?.invalid">This field is required</span>
     </div>
     <div>
         <label for="email">Email: </label>
         <input type="text" formControlName="email"/>
-        <span *ngIf="registerForm.get('email')?.hasError('required')
-        && (registerForm.get('email')?.dirty 
-        || registerForm.get('email')?.touched || isSubmitted)">This field is required</span>
+        <span *ngIf="registerForm.get('email')?.invalid">This field is required</span>
     </div>
     <div>
         <button type="submit">
@@ -90,6 +82,6 @@
         </button>
     </div>
 </form>
-<app-child1 [currentPage]="currentPage"></app-child1>
-<router-outlet></router-outlet>
+
+
 
