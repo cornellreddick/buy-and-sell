@@ -95,6 +95,11 @@ export class AppComponent {
     }, 2000)
 
     this.users$.subscribe(res => console.log('res', res, this.users$.getValue()));
+
+    const hello$ = of('1');
+    hello$.subscribe((value) => console.log(value));
+
+    hello$.toPromise().then((value) => (console.log('value', value)));
   }
 
   registerForm = this.formBuilder.group({
