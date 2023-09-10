@@ -1,7 +1,7 @@
 import { Component, NgZone, Input, ViewChild } from '@angular/core';
 import { UserInterface } from './user/user/user.component';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Subject, combineLatest, of } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, combineLatest, observable, of } from 'rxjs';
 import { Article } from './article';
 import {animate, state, style, transition, trigger } from '@angular/animations';
 import { CarService } from './carservice';
@@ -100,6 +100,20 @@ export class AppComponent {
     hello$.subscribe((value) => console.log(value));
 
     hello$.toPromise().then((value) => (console.log('value', value)));
+
+    //Hot observable is when Math.random is inside the observable. Below it is outside the observable making it cold.
+    const random = Math.random();
+
+    const observable = new Observable((observable => {
+      observable.next(random);
+    }));
+
+    observable.subscribe((data) => {
+      console.log(data);
+    });
+    observable.subscribe((data) => {
+      console.log(data);
+    });
   }
 
   registerForm = this.formBuilder.group({
