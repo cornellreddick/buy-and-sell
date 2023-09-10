@@ -1,7 +1,7 @@
 import { Component, NgZone, Input, ViewChild } from '@angular/core';
 import { UserInterface } from './user/user/user.component';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable, Subject, combineLatest, observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, combineLatest, concatMap, delay, exhaustMap, flatMap, from, map, mergeMap, observable, of, switchMap } from 'rxjs';
 import { Article } from './article';
 import {animate, state, style, transition, trigger } from '@angular/animations';
 import { CarService } from './carservice';
@@ -114,6 +114,26 @@ export class AppComponent {
     observable.subscribe((data) => {
       console.log(data);
     });
+
+    from([0,1,2,3,4]).pipe(map(el => el*10)).subscribe(console.log);
+    const example = (operator: any) => () => {
+      from([0,1,2,3,4])
+      .pipe(operator((x: any)=> of(x).pipe(delay(500))))
+      .subscribe(
+        console.log,
+        () => {},
+        () => console.log(`${operator.name} completed`)
+      );
+    };
+
+    example(mergeMap)();
+    example(flatMap)();
+    example(concatMap)();
+    example(switchMap)();
+    example(exhaustMap)();
+
+
+
   }
 
   registerForm = this.formBuilder.group({
