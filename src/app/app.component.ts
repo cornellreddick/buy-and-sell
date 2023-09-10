@@ -43,6 +43,17 @@ export interface Person{
   age: string;
 }
 
+export interface PeopleInterface{
+  id: string;
+  name: string;
+}
+
+export interface UserDetailsInterface{
+  id: string;
+  age: number;
+}
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -81,8 +92,27 @@ export class AppComponent {
     boring: this.boring$,
     cool: this.cool$
   });
+  people: PeopleInterface[] = [{
+    id: '1',
+    name: 'Cornell Reddick'
+  },
+  {
+    id: '2',
+    name: 'Letitia Goodjoint'
+  }
+  ];
 
   constructor(private http: HttpClient, private carService: CarService, private zone: NgZone, private formBuilder: FormBuilder, private toastr: ToastrService) { 
+
+
+
+    const perso$ = this.getPeron('1').pipe(
+      switchMap((people) => this.getPeopleDetails(people))
+    );
+
+    perso$.subscribe((person) => console.log('person', person));
+
+
     console.log('config', carService.carConfig);
 
     const person$ = new BehaviorSubject<Person[]>([]);
@@ -188,5 +218,15 @@ export class AppComponent {
   fadeInOut(): void {
     this.isShown = !this.isShown;
   }
+
+  getPeron(id: string): Observable<PeopleInterface>{
+    const people = this.people.find((people) => people.id === id)!;
+    return of(people);
+  }
+
+  getPeopleDetails(people: PeopleInterface): Observable<UserDetailsInterface>{
+    return of({id: people.id, age: 30});
+  }
+
 }
 

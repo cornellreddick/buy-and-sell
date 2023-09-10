@@ -27,6 +27,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { PersonModule } from './person/person/person.module';
 import { PersonComponent } from './person/person/person.component';
+import { PeopleComponent } from './people/people/people.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { PersonComponent } from './person/person/person.component';
     Child1Component,
     BackgroundChangeDirective,
     FullNamePipe,
-    ClickDirective
+    ClickDirective,
+    PeopleComponent
     
   ],
   imports: [
