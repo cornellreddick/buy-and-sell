@@ -228,5 +228,16 @@ export class AppComponent {
     return of({id: people.id, age: 30});
   }
 
+
+
 }
 
+export interface CarInterface {
+  id: string;
+  make: string;
+  model: string;
+  VIN: number; 
+}
+
+export type CarMakeAndModel = Pick<CarInterface, 'make' | 'model'>;
+export type CarPost = Omit<CarInterface, 'id'>;
